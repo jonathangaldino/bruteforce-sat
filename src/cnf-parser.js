@@ -8,8 +8,6 @@ export default function buildMakeCNFParser ({ splitAndTrim, makeClause }) {
 
     const clauses = unparsedClauses.map(clause => makeClause(clause))  
 
-    clauses.forEach(clause => console.log(clause.existsNegatedBariables()));
-    
     return clauses;
   }
 }
