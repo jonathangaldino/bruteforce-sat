@@ -16,6 +16,8 @@ export default function buildMakeClause ({ splitAndTrim }) {
       if (length === 2) {
         negatedVariables.push(literal);
         variables.push(literal.charAt(1))
+      } else {
+        variables.push(literal)
       }
     })
     
