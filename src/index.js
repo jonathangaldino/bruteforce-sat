@@ -1,5 +1,3 @@
-import inputParser from './input-parser';
+import CNFParser from './cfn-parser';
 
-const result = inputParser();
-
-console.log(result);
+const clauses = CNFParser();
