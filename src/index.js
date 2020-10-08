@@ -1,4 +1,4 @@
-import buildMakeCNFParser from './cfn-parser';
+import buildMakeCNFParser from './cnf-parser';
 import buildMakeClause from './clause';
 import { splitAndTrim } from './utils';
 
