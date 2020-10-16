@@ -7,26 +7,34 @@ export default function buildMakeClause ({ splitAndTrim }) {
     .replace("(", "")
     .replace(")", "");
 
-    const literals = splitAndTrim(cleanedFormula, "OR");
+    const cleanedClauses = splitAndTrim(cleanedFormula, "AND");
 
-    literals.forEach(literal => {
+    cleanedClauses.forEach(cleanedClause => {
       // if length 2, is probably negated
-      const length = literal.length; 
+      const length = cleanedClause.length;
 
       if (length === 2) {
-        negatedVariables.push(literal);
-        variables.push(literal.charAt(1))
+        negatedVariables.push(cleanedClause);
+        variables.push(cleanedClause.charAt(1))
       } else {
-        variables.push(literal)
+        variables.push(cleanedClause)
       }
     })
-    
+
+    const clauseLiterals = [...variables, ...negatedVariables];
+
     return Object.freeze({
       getFormula: () => formula,
       getVariables: () => variables,
-      getVariablesCount: () => variables.length,
+      getClauseLiterals: () => clauseLiterals,
       getNegatedVariables: () => negatedVariables,
-      existsNegatedBariables: () => negatedVariables.length > 0
+      test: (values) => {
+        if (values.length !== clauseLiterals.length) {
+          throw Error(`Clause has ${clauseLiterals.length} literals but received ${values.length} values`)
+        };
+
+        return values.reduce((acc, value) => acc && value);
+      },
     })
   }
 }
