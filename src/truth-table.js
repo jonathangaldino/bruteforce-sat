@@ -1,13 +1,13 @@
 export default function buildMakeTruthTable({ extractor }) {
   return function makeTruthTable(clauses) {
     const { literals, negatedLiterals } = extractor(clauses);
+    const tableLiterals = [...literals];
 
     const n = literals.length;
     let combinations = Math.pow(2, n);
     let table = new Array(n);
     let limiter = combinations / 2;
     let value = true;
-    const tableLiterals = [...literals];
  
     for(let i = 0; i < n; i++) {
       let counter = 0;
@@ -41,7 +41,9 @@ export default function buildMakeTruthTable({ extractor }) {
 
     return Object.freeze({
       getTable: () => table,
-
+      getTableRowsCount: () => combinations, 
+      getTableLiterals: () => tableLiterals,
+      findLiteralIndex: (literal) => tableLiterals.findIndex(tableLiteral => tableLiteral === literal),
     })
   }
 }
