@@ -39,9 +39,10 @@ export default function buildMakeSATBruteforce() {
     }
 
     if (satisfabilities.length) {
-      console.log(`Is this expression SAT? A: Yes!`)
+      console.log(`Is this expression SAT? A: Yes!`);
+      console.table(satisfabilities);
     } else {
-      console.log(`Is this expression SAT? A: Sadly, no!`)
+      console.log(`Is this expression SAT? A: Sadly, no!`);
     }
   }
 }

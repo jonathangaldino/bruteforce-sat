@@ -11,8 +11,12 @@ const clauses = CNFParser();
 
 const makeTruthTable = buildMakeTruthTable({ extractor: extractVariablesFromClauses });
 
+console.time('Execution Time');
 const truthTable = makeTruthTable(clauses);
 
 const SATBruteforce = buildMakeSATBruteforce();
 
 SATBruteforce(truthTable, clauses);
+
+console.timeEnd('Execution Time');
+console.log('\n')
