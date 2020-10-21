@@ -40,7 +40,7 @@ export default function buildMakeSATBruteforce() {
 
     if (satisfabilities.length) {
       console.log(`Is this expression SAT? A: Yes!`);
-      console.table(satisfabilities);
+      // console.table(satisfabilities);
     } else {
       console.log(`Is this expression SAT? A: Sadly, no!`);
     }

@@ -1,3 +1,5 @@
+import { printTruthTable } from "./utils";
+
 export default function buildMakeTruthTable({ extractor }) {
   return function makeTruthTable(clauses) {
     const { literals, negatedLiterals } = extractor(clauses);
@@ -8,7 +10,7 @@ export default function buildMakeTruthTable({ extractor }) {
     let table = new Array(n);
     let limiter = combinations / 2;
     let value = true;
- 
+
     for(let i = 0; i < n; i++) {
       let counter = 0;
       table[i] = new Array(combinations);
@@ -39,6 +41,8 @@ export default function buildMakeTruthTable({ extractor }) {
       table.push(negatedLiteralColumn);
     })
 
+    // printTruthTable(table, tableLiterals);
+    
     return Object.freeze({
       getTable: () => table,
       getTableRowsCount: () => combinations, 

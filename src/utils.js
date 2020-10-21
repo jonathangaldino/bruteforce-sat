@@ -19,3 +19,13 @@ export function extractVariablesFromClauses(clauses) {
     negatedLiterals: Array.from(negatedLiterals)
   }
 }
+
+export function printTruthTable(table, variables) {
+  const obj = {};
+
+  variables.forEach((variable, index) => {
+    obj[variable] = table[index];
+  });
+
+  console.table(obj);
+}
