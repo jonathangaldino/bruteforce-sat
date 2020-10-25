@@ -9,7 +9,6 @@ export default function buildMakeSATBruteforce() {
       literalsIndex[literal] = truthTable.findLiteralIndex(literal);
     });
 
-
     const combinations = truthTable.getTableRowsCount();
     const satisfabilities = {};
 
@@ -29,7 +28,6 @@ export default function buildMakeSATBruteforce() {
           satisfabilities[position] = satisfability;
         }
       }
-
     }
 
     if (Object.keys(satisfabilities).length) {
