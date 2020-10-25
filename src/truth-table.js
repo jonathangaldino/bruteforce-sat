@@ -32,7 +32,7 @@ export default function buildMakeTruthTable({ extractor }) {
     negatedLiterals.forEach(negatedLiteral => {
       tableLiterals.push(negatedLiteral);
       const negatedLiteralColumn = new Array(combinations);
-      const positiveLiteralIndex = tableLiterals.findIndex(literal => literal === negatedLiteral.charAt(1))
+      const positiveLiteralIndex = tableLiterals.findIndex(literal => literal === negatedLiteral.slice(1))
       
       for(let k = 0; k < combinations; k++) {
         negatedLiteralColumn[k] = !table[positiveLiteralIndex][k];
