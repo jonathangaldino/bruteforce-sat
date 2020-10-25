@@ -9,12 +9,12 @@ export default function buildMakeSATBruteforce() {
       literalsIndex[literal] = truthTable.findLiteralIndex(literal);
     });
 
+
     const combinations = truthTable.getTableRowsCount();
     const satisfabilities = [];
 
     // i iterates each row of the truth table
     for (let i = 0; i < combinations; i++) {
-      let oneClauseWasFalse = false;
       const satisfability = {};
 
       for(const clause of clauses) {
@@ -22,25 +22,18 @@ export default function buildMakeSATBruteforce() {
         const values = clauseLiterals.map(literal => table[literalsIndex[literal]][i]);
         const proposition = clause.test(values);
 
-        if (!proposition) {
-          oneClauseWasFalse = true;
-          break;
-        }
-
-        // console.log({ literals: clauseLiterals, values });
         clauseLiterals.forEach((literal, index) => satisfability[literal] = values[index]);
+
+        if (proposition) {
+          satisfabilities.push(satisfability);
+        }
       }
 
-      if (oneClauseWasFalse) {
-        break;
-      }
-
-      satisfabilities.push(satisfability);
-      // break; // comment this to avoid finding multiple "answers"
     }
 
     if (satisfabilities.length) {
       console.log(`Is this expression SAT?\nA: Yes! Of ${combinations} combinations found ${satisfabilities.length} that will make this expression truthy.`);
+      console.table(satisfabilities);
     } else {
       console.log(`Is this expression SAT?\nA: Sadly, no!`);
     }
