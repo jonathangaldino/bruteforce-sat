@@ -40,8 +40,8 @@ export default function buildMakeTruthTable({ extractor }) {
 
       table.push(negatedLiteralColumn);
     })
-
-    // printTruthTable(table, tableLiterals);
+    
+    printTruthTable(table, tableLiterals);
     
     return Object.freeze({
       getTable: () => table,
