@@ -4,6 +4,7 @@ import { splitAndTrim, extractVariablesFromClauses } from './utils';
 import buildMakeTruthTable from './truth-table';
 import buildMakeSATBruteforce from './bruteforce';
 
+console.time('Execution Time');
 const makeClause = buildMakeClause({ splitAndTrim });
 const CNFParser = buildMakeCNFParser({ splitAndTrim, makeClause });
 
@@ -11,7 +12,6 @@ const clauses = CNFParser();
 
 const makeTruthTable = buildMakeTruthTable({ extractor: extractVariablesFromClauses });
 
-console.time('Execution Time');
 const truthTable = makeTruthTable(clauses);
 
 const SATBruteforce = buildMakeSATBruteforce();
