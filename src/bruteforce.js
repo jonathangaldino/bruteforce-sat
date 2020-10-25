@@ -36,13 +36,13 @@ export default function buildMakeSATBruteforce() {
       }
 
       satisfabilities.push(satisfability);
+      // break; // comment this to avoid finding multiple "answers"
     }
 
     if (satisfabilities.length) {
-      console.log(`Is this expression SAT? A: Yes!`);
-      // console.table(satisfabilities);
+      console.log(`Is this expression SAT?\nA: Yes! Of ${combinations} combinations found ${satisfabilities.length} that will make this expression truthy.`);
     } else {
-      console.log(`Is this expression SAT? A: Sadly, no!`);
+      console.log(`Is this expression SAT?\nA: Sadly, no!`);
     }
   }
 }
